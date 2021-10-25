@@ -2,6 +2,7 @@
 <html lang="en">
     <head>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <meta charset="UTF-8">
         <title>Form</title>
         <style>
@@ -171,6 +172,15 @@
                     bottom: 100%;
                 }
             }
+            .response-container{
+                border: white;
+                border-width: 2px;
+                border-style: solid;
+                padding: 7px;
+            }
+            .copy-button{
+                cursor: pointer;
+            }
             </style>
     </head>
 <body>
@@ -200,9 +210,15 @@
           <div class="message-box">
             <textarea name="text" cols="40" rows="3" minlength="8" id="submit-textarea"></textarea>
             <label>Message</label>
-          </div>    
+          </div>   
           <p id="submit-error" style="display: none;color: grey;">Your message length must be more than 8 characters!</p>
-          <p id="submit-response-text" style="color: white; word-break: break-all;"></p>
+          <p id="submit-response-text" style="color: white; word-break: break-all;" ></p>
+          <div dir="rtl" onclick="copySubmitText()">
+            <i id="submit-btn-icon" style="font-size:24px; color: white; display: none;" class="fa copy-button">&#xf0c5;</i>
+            <span dir="ltr" style="color: white; display: none;" id="submit-copy-text">
+                copied!
+            </span>
+          </div>          
           <button id="go-submit" type="button" onclick="submitMessageWithGo()" style="width: 100px;">
             <span></span>
             <span></span>
@@ -229,6 +245,12 @@
           </div>   
           <p id="check-error" style="display: none;color: grey;">Your message length must be more than 8 characters!</p>
           <p id="check-response-text" style="color: white; word-break: break-all;"></p>
+          <div dir="rtl" onclick="copyCheckText()">
+            <i id="check-btn-icon" style="font-size:24px; color: white; display: none;" class="fa copy-button">&#xf0c5;</i>
+            <span dir="ltr" style="color: white; display: none;" id="check-copy-text">
+                copied!
+            </span>
+          </div> 
           <button id="go-check" type="button" onclick="checkMessageWithGo()" style="width: 100px;">
             <span></span>
             <span></span>
@@ -269,6 +291,33 @@
             }
         });
     });
+    function copySubmitText() {
+        var copyText = document.getElementById("submit-response-text");  
+        var input = document.createElement("textarea");
+        input.value = copyText.textContent;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand("Copy");
+        input.remove();
+        document.getElementById("submit-copy-text").style.display = 'inline'
+        setTimeout(function(){
+            document.getElementById("submit-copy-text").style.display = 'none';
+        }, 3000);
+    }
+    function copyCheckText() {
+        var copyText = document.getElementById("check-response-text");  
+        var input = document.createElement("textarea");
+        input.value = copyText.textContent;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand("Copy");
+        input.remove();
+        document.getElementById("check-copy-text").style.display = 'inline'
+        setTimeout(function(){
+            document.getElementById("check-copy-text").style.display = 'none';
+        }, 3000);
+    }
+ 
     function openSubmitForm() {
         document.getElementById("choose-form").style.display = "none";
         document.getElementById("submit-form").style.display = "block";
@@ -293,6 +342,10 @@
                 $('#submit-response-text').text(responseText)
             }  
         });
+        document.getElementById("choose-form").style.display = "none";
+        document.getElementById("submit-form").style.display = "block";
+        document.getElementById("submit-btn-icon").style.display = "inline";
+
     }
     function submitMessageWithGo(){
         let submitMessge = document.getElementById("submit-textarea").value
@@ -312,6 +365,7 @@
         });
         document.getElementById("choose-form").style.display = "none";
         document.getElementById("submit-form").style.display = "block";
+        document.getElementById("submit-btn-icon").style.display = "inline";
     }
     function checkMessageWithNode(){
         let submitMessge = document.getElementById("check-textarea").value
@@ -330,6 +384,7 @@
         }); 
         document.getElementById("choose-form").style.display = "none";
         document.getElementById("check-form").style.display = "block";
+        document.getElementById("check-btn-icon").style.display = "inline";
     }
     function checkMessageWithGo(){
         let submitMessge = document.getElementById("check-textarea").value
@@ -348,6 +403,7 @@
         });
         document.getElementById("choose-form").style.display = "none";
         document.getElementById("check-form").style.display = "block";
+        document.getElementById("check-btn-icon").style.display = "inline";
     }
 </script>
 </body>
