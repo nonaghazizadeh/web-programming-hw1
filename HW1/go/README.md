@@ -6,7 +6,7 @@ sudo snap install go
 ```
 cd /var/www/web-programming/HW1/go
 ```
-3. type the following command to run go
+3. type the following command to run go:
 ```
 go run main.go
 ```
