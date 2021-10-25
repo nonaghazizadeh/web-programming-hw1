@@ -8,7 +8,8 @@ const client = redis.createClient();
 
 app.use(express.json());
 
-router.post('/node/sha', function(req, res){
+router.post('/node/sha256', function(req, res){
+    console.log(req.body);
     const { data } = req.body;
     if (data.length < 8) return res.status(400).send(JSON.stringify({"message": "Your message length must be more than 8 characters!"}));
 
@@ -17,7 +18,7 @@ router.post('/node/sha', function(req, res){
     return res.status(200).send(JSON.stringify({"message": "Data successfully saved."}));
 });
 
-router.get('/node/sha/:data', function(req, res){
+router.get('/node/sha256/:data', function(req, res){
     const { data } = req.params;
     client.get(data, function(err, value){
         if (err) return res.status(500).send(JSON.stringify({"message": "Internal server error!", "error": err.message}));

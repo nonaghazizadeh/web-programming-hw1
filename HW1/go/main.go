@@ -65,12 +65,12 @@ func redisHandler(action string, message string, c *gin.Context) {
 func main() {
 	r := gin.Default()
 
-	r.GET("/go/sha/:data", func(c *gin.Context) {
+	r.GET("/go/sha256/:data", func(c *gin.Context) {
 		data := c.Param("data")
 		redisHandler("Get", data, c)
 	})
 
-	r.POST("/go/sha/:data", func(c *gin.Context) {
+	r.POST("/go/sha256", func(c *gin.Context) {
 		jsonData, err := ioutil.ReadAll(c.Request.Body)
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{
