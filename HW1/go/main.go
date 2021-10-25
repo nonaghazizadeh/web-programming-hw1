@@ -68,8 +68,7 @@ func main() {
 		data := c.Query("data")
 		if len([]rune(data)) < 8 {
 			c.JSON(http.StatusBadRequest, gin.H{
-				"message": "invalid number of characters",
-				"sent":    data,
+				"message": "Your message lenght must be more than 8 characters!",
 			})
 		} else {
 			mess := redisHandler("Set", data)
