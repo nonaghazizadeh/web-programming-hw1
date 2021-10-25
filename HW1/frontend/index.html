@@ -35,7 +35,7 @@
             .form-box .message-box {
                 position: relative;
             }
-            .form-box .message-box textarea {
+            .form-box .message-box textarea{
                 width: 100%;
                 padding: 10px 0;
                 font-size: 16px;
@@ -202,6 +202,7 @@
             <label>Message</label>
           </div>    
           <p id="submit-error" style="display: none;color: grey;">Your message length must be more than 8 characters!</p>
+          <p id="submit-response-text" style="color: white; word-break: break-all;"></p>
           <button id="go-submit" type="button" onclick="submitMessageWithGo()" style="width: 100px;">
             <span></span>
             <span></span>
@@ -227,6 +228,7 @@
             <label>Message</label>
           </div>   
           <p id="check-error" style="display: none;color: grey;">Your message length must be more than 8 characters!</p>
+          <p id="check-response-text" style="color: white; word-break: break-all;"></p>
           <button id="go-check" type="button" onclick="checkMessageWithGo()" style="width: 100px;">
             <span></span>
             <span></span>
@@ -300,20 +302,18 @@
     }
     function submitMessageWithNode(){
         let submitMessge = document.getElementById("submit-textarea").value
-        var data = {"data": submitMessge}
-        console.log(data)
         $.ajax({  
             url: 'http://192.168.1.216:81/node/sha256',  
             type: 'POST',  
-            data: data,  
-            dataType: JSON,    
+            contentType: 'application/json',
+            data: JSON.stringify({"data": String(submitMessge)}),  
             success: function (data) {  
-                console.log(data);  
+                responseText = data.message
+                $('#submit-response-text').text(responseText)
             },  
             error: function (error) { 
-                console.log(data) 
-                console.log(typeof(data))
-                console.log(error);  
+                reponseText = error.responseJSON.message
+                $('#submit-response-text').text(responseText)
             }  
         });
     }
@@ -322,12 +322,15 @@
         $.ajax({  
             url: 'http://192.168.1.216:81/go/sha256',  
             type: 'POST',  
-            data: {"data": submitMessge },  
+            contentType: 'application/json',
+            data: JSON.stringify({"data": submitMessge }),  
             success: function (data) {  
-                console.log(data);  
+                responseText = data.message
+                $('#submit-response-text').text(responseText)
             },  
             error: function (error) {  
-                console.log(error);  
+                reponseText = error.responseJSON.message
+                $('#submit-response-text').text(responseText)  
             }  
         });
         document.getElementById("choose-form").style.display = "none";
@@ -335,15 +338,17 @@
     }
     function checkMessageWithNode(){
         let submitMessge = document.getElementById("check-textarea").value
-        let url = 'http://192.168.1.216:81/node/' + submitMessge
+        let url = 'http://192.168.1.216:81/node/sha256/' + submitMessge
         $.ajax({
             url: url,
             type: "GET",
             success: function (data) {
-                console.log(data);
+                reponseText = data.message
+                $('#check-response-text').text(responseText)
             },
             error: function (error) {
-                console.log(error);
+                reponseText = error.responseJSON.message
+                $('#check-response-text').text(responseText)
             }
         }); 
         document.getElementById("choose-form").style.display = "none";
@@ -351,15 +356,17 @@
     }
     function checkMessageWithGo(){
         let submitMessge = document.getElementById("check-textarea").value
-        let url = 'http://192.168.1.216:81/go/' + submitMessge
+        let url = 'http://192.168.1.216:81/go/sha256/' + submitMessge
         $.ajax({
             url: url,
             type: "GET",
             success: function (data) {
-                console.log(data);
+                reponseText = data.message
+                $('#check-response-text').text(responseText)
             },
             error: function (error) {
-                console.log(error);
+                reponseText = error.responseJSON.message
+                $('#check-response-text').text(responseText)
             }
         });
         document.getElementById("choose-form").style.display = "none";
