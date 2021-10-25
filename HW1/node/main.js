@@ -15,7 +15,7 @@ router.post('/node/sha256', function(req, res){
 
     hashed_data = crypto.createHash('sha256').update(data).digest('hex');
     client.set(hashed_data, data);
-    return res.status(200).send(JSON.stringify({"message": hashed_data}));
+    return res.status(200).json({"message": hashed_data});
 });
 
 router.get('/node/sha256/:data', function(req, res){
