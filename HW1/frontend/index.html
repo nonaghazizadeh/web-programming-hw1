@@ -45,7 +45,7 @@
                 border-bottom: 1px solid #fff;
                 outline: none;
                 background: transparent;
-                height: 100px;
+                height: 40px;
             }
             .form-box .message-box label {
                 position: absolute;
@@ -87,7 +87,8 @@
                 margin-top: 40px;
                 letter-spacing: 4px
             }
-            .form-box button:hover {
+            .form-box button:hover:enabled {
+                cursor: pointer;
                 background: #03e9f4;
                 color: #fff;
                 border-radius: 5px;
@@ -95,6 +96,9 @@
                             0 0 25px #03e9f4,
                             0 0 50px #03e9f4,
                             0 0 100px #03e9f4;
+            }
+            .form-box button:disabled {
+                opacity: 0.7;
             }
             .form-box button span {
                 position: absolute;
@@ -194,24 +198,24 @@
         <h2>Form</h2>
         <form>
           <div class="message-box">
-            <textarea name="text" cols="40" rows="10" minlength="10" id="submit-textarea"></textarea>
+            <textarea name="text" cols="40" rows="3" minlength="8" id="submit-textarea"></textarea>
             <label>Message</label>
           </div>    
-          <button type="button" href="#" onclick="submitMessageWithNode()">
+          <p id="submit-error" style="display: none;color: grey;">Your message length must be more than 8 characters!</p>
+          <button id="go-submit" type="button" onclick="submitMessageWithGo()" style="width: 100px;">
             <span></span>
             <span></span>
             <span></span>
             <span></span>
-            Submit(node)
+            go
           </button>
-          <button type="button" href="#" onclick="submitMessageWithGo()">
+          <button id="node-submit" type="button" onclick="submitMessageWithNode()" style="margin-left: 105px;">
             <span></span>
             <span></span>
             <span></span>
             <span></span>
-            Submit(go)
+            node
           </button>
-
         </form>
       </div>
 
@@ -219,26 +223,73 @@
         <h2>Check Form</h2>
         <form>
           <div class="message-box">
-            <textarea name="text" cols="40" rows="10" id="check-textarea"></textarea>
+            <textarea name="text" cols="40" rows="10" id="check-textarea" minlength="8"></textarea>
             <label>Message</label>
-          </div>    
-          <button type="button" onclick="checkMessageWithNode()">
+          </div>   
+          <p id="check-error" style="display: none;color: grey;">Your message length must be more than 8 characters!</p>
+          <button id="go-check" type="button" onclick="checkMessageWithGo()" style="width: 100px;">
             <span></span>
             <span></span>
             <span></span>
             <span></span>
-            Check(node)
-          </button>
-          <button type="button" onclick="checkMessageWithGo()">
+            go
+          </button> 
+          <button id="node-check" type="button" onclick="checkMessageWithNode()" style="margin-left: 105px;">
             <span></span>
             <span></span>
             <span></span>
             <span></span>
-            Check(go)
+            node
           </button>
         </form>
       </div>
 <script>
+    $(document).ready(function() {
+        $('#go-submit').attr('disabled', true);
+        $('#node-submit').attr('disabled' , true);
+        $('#submit-textarea').on('keyup',function()
+        {
+            var textarea_val = $("#submit-textarea").val();
+        
+            var minLength = $("#submit-textarea").attr( 'minlength' );
+        
+            if(textarea_val != '' && textarea_val.length >= minLength)
+            {
+                $('#go-submit').attr('disabled' , false);
+                $('#node-submit').attr('disabled' , false);
+                $('#submit-error').css("display", "none");
+            }
+            else
+            {
+                $('#go-submit').attr('disabled' , true);
+                $('#node-submit').attr('disabled' , true);
+                $('#submit-error').css("display", "block");
+            }
+        });
+
+        $('#go-check').attr('disabled', true);
+        $('#node-check').attr('disabled', true);
+        $('#check-textarea').on('keyup',function()
+        {
+            var textarea_val = $("#check-textarea").val();
+        
+            var minLength = $("#check-textarea").attr( 'minlength' );
+        
+            if(textarea_val != '' && textarea_val.length >= minLength)
+            {
+                $('#go-check').attr('disabled' , false);
+                $('#node-check').attr('disabled' , false);
+                $('#check-error').css("display", "none");
+            }
+            else
+            {
+                $('#go-check').attr('disabled' , true);
+                $('#node-check').attr('disabled' , true);
+                $('#check-error').css("display", "block");
+            }
+        });
+
+    });
     function openSubmitForm() {
         document.getElementById("choose-form").style.display = "none";
         document.getElementById("submit-form").style.display = "block";
