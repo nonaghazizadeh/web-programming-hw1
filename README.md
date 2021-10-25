@@ -23,5 +23,6 @@ cd /var/www
 ```
 git clone https://github.com/nonaghazizadeh/web-programming.git
 ```
+7. for other configurations do instructions in [go readme](https://github.com/nonaghazizadeh/web-programming/blob/master/HW1/go/README.md) and [node readme](https://github.com/nonaghazizadeh/web-programming/blob/master/HW1/node/README.md)
 7. type your server ip with port 81 for example `http://0.0.0.0:81/` </br>
 8. enjoy it!
