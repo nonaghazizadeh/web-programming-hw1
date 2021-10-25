@@ -70,7 +70,7 @@ func main() {
 		redisHandler("Get", data, c)
 	})
 
-	r.POST("/go/sha256/:data", func(c *gin.Context) {
+	r.POST("/go/sha256", func(c *gin.Context) {
 		jsonData, err := ioutil.ReadAll(c.Request.Body)
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{
