@@ -1,5 +1,5 @@
 # web-programming/HW1
-![IMG_5979](https://user-images.githubusercontent.com/59199865/138659512-b6aead5f-2f6e-43d6-885c-66b9fc4174fe.JPG)
+![IMG_5983](https://user-images.githubusercontent.com/59199865/138674498-471b4d16-9e3d-47cc-98e9-43576fb9df7e.JPG)
 ## How to start
 1. install nginx on your ubuntu server with the following command: </br>
 ```
