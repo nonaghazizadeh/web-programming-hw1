@@ -289,7 +289,7 @@
                 $('#submit-response-text').text(responseText)
             },  
             error: function (error) { 
-                reponseText = error.responseJSON.message
+                responseText = error.responseJSON.message
                 $('#submit-response-text').text(responseText)
             }  
         });
@@ -306,7 +306,7 @@
                 $('#submit-response-text').text(responseText)
             },  
             error: function (error) {  
-                reponseText = error.responseJSON.message
+                responseText = error.responseJSON.message
                 $('#submit-response-text').text(responseText)  
             }  
         });
@@ -324,7 +324,7 @@
                 $('#check-response-text').text(responseText)
             },
             error: function (error) {
-                reponseText = error.responseJSON.message
+                responseText = error.responseJSON.message
                 $('#check-response-text').text(responseText)
             }
         }); 
@@ -338,11 +338,11 @@
             url: url,
             type: "GET",
             success: function (data) {
-                reponseText = data.message
+                responseText = data.message
                 $('#check-response-text').text(responseText)
             },
             error: function (error) {
-                reponseText = error.responseJSON.message
+                responseText = error.responseJSON.message
                 $('#check-response-text').text(responseText)
             }
         });
