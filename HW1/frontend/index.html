@@ -37,7 +37,7 @@
             }
             .form-box .message-box textarea{
                 width: 100%;
-                padding: 10px 0;
+                padding: 20px 0;
                 font-size: 16px;
                 color: #fff;
                 margin-bottom: 30px;
@@ -268,29 +268,6 @@
                 $('#submit-error').css("display", "block");
             }
         });
-
-        $('#go-check').attr('disabled', true);
-        $('#node-check').attr('disabled', true);
-        $('#check-textarea').on('keyup',function()
-        {
-            var textarea_val = $("#check-textarea").val();
-        
-            var minLength = $("#check-textarea").attr( 'minlength' );
-        
-            if(textarea_val != '' && textarea_val.length >= minLength)
-            {
-                $('#go-check').attr('disabled' , false);
-                $('#node-check').attr('disabled' , false);
-                $('#check-error').css("display", "none");
-            }
-            else
-            {
-                $('#go-check').attr('disabled' , true);
-                $('#node-check').attr('disabled' , true);
-                $('#check-error').css("display", "block");
-            }
-        });
-
     });
     function openSubmitForm() {
         document.getElementById("choose-form").style.display = "none";
