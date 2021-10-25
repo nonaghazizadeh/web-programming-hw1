@@ -112,9 +112,6 @@
                 background: linear-gradient(90deg, transparent, #03e9f4);
                 animation: btn-anim1 1s linear infinite;
             }
-            .response-text {
-                word-break: break-all;
-            }
             @keyframes btn-anim1 {
                 0% {
                     left: -100%;
@@ -205,7 +202,7 @@
             <label>Message</label>
           </div>    
           <p id="submit-error" style="display: none;color: grey;">Your message length must be more than 8 characters!</p>
-          <p id="submit-response-text" style="color: white;"></p>
+          <p id="submit-response-text" style="color: white; word-break: break-all;"></p>
           <button id="go-submit" type="button" onclick="submitMessageWithGo()" style="width: 100px;">
             <span></span>
             <span></span>
@@ -231,7 +228,7 @@
             <label>Message</label>
           </div>   
           <p id="check-error" style="display: none;color: grey;">Your message length must be more than 8 characters!</p>
-          <p id="check-response-text" style="color: white;"></p>
+          <p id="check-response-text" style="color: white; word-break: break-all;"></p>
           <button id="go-check" type="button" onclick="checkMessageWithGo()" style="width: 100px;">
             <span></span>
             <span></span>
