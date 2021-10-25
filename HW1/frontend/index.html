@@ -305,11 +305,9 @@
             type: 'POST',  
             data: JSON.stringify({"data": submitMessge}),  
             success: function (data) {  
-                console.log(data);  
+                console.log(data.message);  
             },  
             error: function (error) { 
-                console.log(data) 
-                console.log(typeof(data))
                 console.log(error);  
             }  
         });
@@ -321,7 +319,7 @@
             type: 'POST',  
             data: JSON.stringify({"data": submitMessge }),  
             success: function (data) {  
-                console.log(data);  
+                console.log(data.message);  
             },  
             error: function (error) {  
                 console.log(error);  
