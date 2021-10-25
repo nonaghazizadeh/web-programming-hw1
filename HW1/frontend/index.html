@@ -300,14 +300,19 @@
     }
     function submitMessageWithNode(){
         let submitMessge = document.getElementById("submit-textarea").value
+        var data = {"data": submitMessge}
+        console.log(data)
         $.ajax({  
             url: 'http://192.168.1.216:81/node/sha256',  
             type: 'POST',  
-            data: {"data": submitMessge },  
+            data: data,  
+            dataType: JSON,    
             success: function (data) {  
                 console.log(data);  
             },  
-            error: function (error) {  
+            error: function (error) { 
+                console.log(data) 
+                console.log(typeof(data))
                 console.log(error);  
             }  
         });
