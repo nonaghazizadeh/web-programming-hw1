@@ -9,6 +9,7 @@ const client = redis.createClient();
 app.use(express.json());
 
 router.post('/node/sha256', function(req, res){
+    console.log(req.body);
     const { data } = req.body;
     if (data.length < 8) return res.status(400).send(JSON.stringify({"message": "Your message length must be more than 8 characters!"}));
 
