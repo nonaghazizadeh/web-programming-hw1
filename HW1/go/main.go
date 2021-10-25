@@ -45,7 +45,7 @@ func redisHandler(action string, message string, c *gin.Context) {
 	case "Get":
 		data, err := rdb.Get(ctx, message).Result()
 		if err == redis.Nil {
-			c.JSON(http.StatusBadRequest, gin.H{
+			c.JSON(http.StatusOK, gin.H{
 				"message": "Data doesn't exist",
 			})
 		} else if err != nil {
