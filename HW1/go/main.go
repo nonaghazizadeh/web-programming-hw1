@@ -21,7 +21,7 @@ var ctx = context.Background()
 
 func redisHandler(action string, message string, c *gin.Context) {
 	rdb := redis.NewClient(&redis.Options{
-		Addr:     "0.0.0.0:7001",
+		Addr:     "0.0.0.0:6379",
 		Password: "", // no password set
 		DB:       0,  // use default DB
 	})
