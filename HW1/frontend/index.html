@@ -306,10 +306,9 @@
             url: 'http://192.168.1.216:81/node/sha256',  
             type: 'POST',  
             contentType: 'application/json',
-            
             data: JSON.stringify({"data": String(submitMessge)}),  
             success: function (data) {  
-                console.log(data.message);  
+                console.log(data);  
             },  
             error: function (error) { 
                 console.log(error);  
@@ -321,9 +320,10 @@
         $.ajax({  
             url: 'http://192.168.1.216:81/go/sha256',  
             type: 'POST',  
+            contentType: 'application/json',
             data: JSON.stringify({"data": submitMessge }),  
             success: function (data) {  
-                console.log(data.message);  
+                console.log(data);  
             },  
             error: function (error) {  
                 console.log(error);  
